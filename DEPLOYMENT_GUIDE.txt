@@ -1,0 +1,100 @@
+===============================================
+HEALTHCARE CHATBOT - GITHUB & NETLIFY DEPLOYMENT
+===============================================
+
+Your GitHub username: nkaluva9
+Repository: https://github.com/nkaluva9/healthcare-chatbot
+
+===============================================
+STEP 1: DOWNLOAD THIS PROJECT FROM BOLT
+===============================================
+
+Look for one of these options in Bolt:
+- "Export Project" button (usually top-right)
+- "Download" option in menu
+- "Share" → "Export as ZIP"
+
+Save the downloaded folder to your computer.
+
+===============================================
+STEP 2: PUSH TO GITHUB FROM YOUR COMPUTER
+===============================================
+
+1. Open Terminal/Command Prompt on your computer
+
+2. Navigate to the downloaded project folder:
+   cd path/to/healthcare-chatbot
+
+3. Initialize git (if not already done):
+   git init
+   git config user.name "nkaluva9"
+   git config user.email "your-email@example.com"
+
+4. Add all files:
+   git add .
+
+5. Create first commit:
+   git commit -m "Initial commit: Healthcare chatbot"
+
+6. Add GitHub remote:
+   git remote add origin https://github.com/nkaluva9/healthcare-chatbot.git
+
+7. Push to GitHub:
+   git branch -M main
+   git push -u origin main
+
+   When prompted:
+   - Username: nkaluva9
+   - Password: YOUR_PERSONAL_ACCESS_TOKEN (not your GitHub password)
+
+===============================================
+STEP 3: CREATE PERSONAL ACCESS TOKEN
+===============================================
+
+If you don't have a token yet:
+
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Name: "healthcare-bot-deployment"
+4. Check: "repo" (full control of repositories)
+5. Click "Generate token"
+6. COPY THE TOKEN - use this as password when pushing
+
+===============================================
+STEP 4: DEPLOY TO NETLIFY
+===============================================
+
+1. Go to: https://app.netlify.com
+2. Click "Add new site" → "Import an existing project"
+3. Choose "GitHub"
+4. Authorize Netlify to access GitHub
+5. Select: nkaluva9/healthcare-chatbot
+6. Build settings:
+   - Build command: npm run build
+   - Publish directory: dist
+7. Add environment variables (click "Show advanced" → "New variable"):
+
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_key
+   VITE_DIRECT_LINE_SECRET=your_bot_secret
+
+8. Click "Deploy site"
+
+===============================================
+STEP 5: GET YOUR LIVE URL
+===============================================
+
+After deployment completes (2-3 minutes):
+- Your site will be at: https://random-name-123.netlify.app
+- You can customize this under: Site settings → Domain management
+
+===============================================
+NEED HELP?
+===============================================
+
+If you get stuck at any step, just let me know which step number!
+
+Common issues:
+- "Permission denied": Use Personal Access Token, not password
+- "Repository not found": Make sure repo is created on GitHub first
+- "Build failed": Check environment variables are set correctly
