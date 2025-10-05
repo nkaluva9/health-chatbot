@@ -1,6 +1,63 @@
 # Healthcare Chatbot
 
+[![Build Status](https://img.shields.io/github/actions/workflow/status/nkaluva9/healthcare-chatbot/deploy.yml?branch=main)](https://github.com/nkaluva9/healthcare-chatbot/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Deployment](https://img.shields.io/badge/Deployed-GitHub%20Pages-success)](https://nkaluva9.github.io/healthcare-chatbot/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3+-61dafb.svg)](https://reactjs.org/)
+
 A modern, production-ready healthcare chatbot application built with React, TypeScript, Azure Bot Framework, and Supabase. This application provides a secure, HIPAA-compliant chat interface with session management, privacy controls, and adaptive card support.
+
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Database Schema](#database-schema)
+- [Scripts](#scripts)
+- [Testing](#testing)
+- [Security Features](#security-features)
+- [Edge Functions](#edge-functions)
+- [Switching Between Mock and Real Azure Bot Service](#switching-between-mock-and-real-azure-bot-service)
+- [Deployment](#deployment)
+- [Accessibility Statement](#accessibility-statement)
+- [Contributing](#contributing)
+- [Issue Reporting Guidelines](#issue-reporting-guidelines)
+- [Code of Conduct](#code-of-conduct)
+- [Changelog](#changelog)
+- [License](#license)
+- [Support](#support)
+- [Acknowledgments](#acknowledgments)
+
+## Quick Start
+
+Get started with the Healthcare Chatbot in minutes:
+
+```bash
+# Clone the repository
+git clone https://github.com/nkaluva9/healthcare-chatbot.git
+cd healthcare-chatbot
+
+# Install dependencies
+npm install
+
+# Set up environment variables (copy and edit)
+cp .env.example .env
+# Edit .env with your Supabase credentials
+
+# Start development server (runs in mock mode by default)
+npm run dev
+```
+
+**Live Demo**: [https://nkaluva9.github.io/healthcare-chatbot/](https://nkaluva9.github.io/healthcare-chatbot/) *(if deployed)*
+
+**Note**: The app runs in mock mode by default, which doesn't require Azure Bot Service setup. Perfect for testing and development!
+
+For full setup instructions including database configuration, see [Getting Started](#getting-started).
 
 ## Screenshots
 
@@ -242,6 +299,58 @@ Stores user privacy and data retention preferences.
 - `npm run lint` - Run ESLint
 - `npm run typecheck` - Run TypeScript type checking
 
+## Testing
+
+The project includes several quality assurance tools to ensure code quality and correctness:
+
+### Running Tests
+
+Currently, the project uses the following testing and validation tools:
+
+**Linting**
+```bash
+npm run lint
+```
+Runs ESLint to check code style and catch common errors. ESLint is configured with TypeScript support and React-specific rules.
+
+**Type Checking**
+```bash
+npm run typecheck
+```
+Runs TypeScript compiler in no-emit mode to verify type safety across the codebase without generating output files.
+
+**Build Verification**
+```bash
+npm run build
+```
+Verifies that the application builds successfully for production. The build process includes:
+- TypeScript compilation
+- Vite bundling and optimization
+- Asset processing
+
+**Preview Production Build**
+```bash
+npm run preview
+```
+Serves the production build locally for testing before deployment.
+
+### Continuous Integration
+
+The project includes GitHub Actions workflows that automatically run on pull requests:
+- Linting checks
+- Type checking
+- Build verification
+
+See `.github/workflows/deploy.yml` for the complete CI/CD configuration.
+
+### Code Quality
+
+The project enforces code quality through:
+- **ESLint**: Configured for TypeScript and React best practices
+- **TypeScript**: Strict type checking enabled
+- **React Hooks Rules**: Validates proper hook usage
+- **Prettier Integration**: Code formatting (via ESLint)
+
 ## Security Features
 
 - Row Level Security (RLS) enabled on all tables
@@ -405,6 +514,44 @@ The application can be deployed to various platforms:
 
 See `DEPLOYMENT_GUIDE.txt` for detailed deployment instructions.
 
+## Accessibility Statement
+
+The Healthcare Chatbot is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards.
+
+### Accessibility Features
+
+- **Keyboard Navigation**: Full keyboard support for all interactive elements
+- **Screen Reader Compatible**: Semantic HTML and ARIA labels for assistive technologies
+- **Color Contrast**: WCAG 2.1 AA compliant color contrast ratios
+- **Focus Indicators**: Clear visual focus states for all interactive elements
+- **Responsive Design**: Adapts to various screen sizes and zoom levels
+- **Fluent UI Components**: Built with Microsoft's accessible Fluent UI component library
+
+### Healthcare-Specific Considerations
+
+- **Clear Privacy Notices**: Prominent privacy consent modal with explicit consent options
+- **Data Control**: Users can manage data retention settings and export their data
+- **Simple Language**: Medical information presented in clear, understandable terms
+- **No Sensitive Data Collection**: Explicit guidance on what information NOT to share
+- **Emergency Disclaimers**: Clear statements that the chatbot is not for medical emergencies
+
+### Feedback and Support
+
+We welcome feedback on the accessibility of the Healthcare Chatbot. If you encounter accessibility barriers, please let us know via:
+- GitHub Issues: [Report an accessibility issue](https://github.com/nkaluva9/healthcare-chatbot/issues)
+- Include "Accessibility" in the issue title
+
+We aim to respond to accessibility feedback within 5 business days.
+
+### Standards and Compliance
+
+This application strives to conform to:
+- Web Content Accessibility Guidelines (WCAG) 2.1 Level AA
+- Section 508 of the Rehabilitation Act
+- Healthcare-specific accessibility best practices
+
+**Note**: While we strive for full accessibility, some third-party components (Azure Bot Framework, Supabase UI) may have their own accessibility considerations.
+
 ## Contributing
 
 1. Fork the repository
@@ -413,6 +560,112 @@ See `DEPLOYMENT_GUIDE.txt` for detailed deployment instructions.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## Issue Reporting Guidelines
+
+We appreciate your help in making this project better! When reporting issues, please follow these guidelines:
+
+### Before Submitting an Issue
+
+1. **Search Existing Issues**: Check if your issue has already been reported
+2. **Check Documentation**: Review the README and [project wiki](https://github.com/nkaluva9/healthcare-chatbot/wiki)
+3. **Try Latest Version**: Ensure you're using the latest version from the main branch
+
+### Bug Reports
+
+When reporting a bug, please include:
+
+**Required Information:**
+- **Description**: Clear description of the bug
+- **Steps to Reproduce**: Detailed steps to reproduce the issue
+- **Expected Behavior**: What you expected to happen
+- **Actual Behavior**: What actually happened
+- **Environment**: 
+  - Node.js version (`node --version`)
+  - npm version (`npm --version`)
+  - Operating System
+  - Browser (if applicable)
+
+**Optional but Helpful:**
+- Screenshots or screen recordings
+- Error messages or console logs
+- Code snippets demonstrating the issue
+- Whether the issue occurs in mock mode, production mode, or both
+
+**Example:**
+```markdown
+**Bug**: Chat messages not saving to database
+
+**Steps to Reproduce:**
+1. Start app with `npm run dev`
+2. Send a message in the chat
+3. Refresh the page
+4. Previous messages are not displayed
+
+**Expected**: Messages should persist after refresh
+**Actual**: Messages disappear after refresh
+
+**Environment:**
+- Node.js: v18.17.0
+- npm: 9.8.1
+- OS: Ubuntu 22.04
+- Browser: Chrome 119
+```
+
+### Feature Requests
+
+For new features, please include:
+- **Use Case**: Describe the problem this feature would solve
+- **Proposed Solution**: How you envision the feature working
+- **Alternatives Considered**: Other solutions you've thought about
+- **Additional Context**: Screenshots, mockups, or examples
+
+### Security Vulnerabilities
+
+**DO NOT** report security vulnerabilities through public GitHub issues. Instead:
+1. Email the maintainers directly (see package.json for contact info)
+2. Include "SECURITY" in the subject line
+3. Provide detailed information about the vulnerability
+4. Allow time for the issue to be addressed before public disclosure
+
+### Healthcare Data Privacy Issues
+
+If you discover an issue related to healthcare data privacy or HIPAA compliance:
+1. Report it as a security vulnerability (privately)
+2. Do NOT include any real patient data or PHI in the report
+3. Use hypothetical examples only
+
+## Code of Conduct
+
+This project adheres to a Code of Conduct that all contributors are expected to follow. Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before contributing.
+
+**Summary:**
+- Be respectful and inclusive
+- Welcome diverse perspectives
+- Accept constructive criticism gracefully
+- Focus on what's best for the community
+- Show empathy towards other community members
+
+**Healthcare Context:**
+Given the healthcare nature of this project, we're especially mindful of:
+- Patient privacy and data protection
+- Ethical considerations in healthcare technology
+- Accessibility for users with disabilities
+- Clear communication about medical information limitations
+
+Report unacceptable behavior to the project maintainers via GitHub Issues or email.
+
+*Note: A full CODE_OF_CONDUCT.md file will be added to the repository root following the [Contributor Covenant](https://www.contributor-covenant.org/) standard.*
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes, new features, bug fixes, and breaking changes in each release.
+
+**Latest Updates:**
+- Check the [Releases page](https://github.com/nkaluva9/healthcare-chatbot/releases) for version history
+- Follow [GitHub commits](https://github.com/nkaluva9/healthcare-chatbot/commits/main) for recent changes
+
+*Note: A CHANGELOG.md file following [Keep a Changelog](https://keepachangelog.com/) format will be maintained starting with the next release.*
+
 ## License
 
 This project is licensed under the MIT License.
@@ -420,8 +673,33 @@ This project is licensed under the MIT License.
 ## Support
 
 For issues and questions:
-- GitHub Issues: https://github.com/nkaluva9/healthcare-chatbot/issues
-- Documentation: See project wiki
+- **GitHub Issues**: [Report bugs or request features](https://github.com/nkaluva9/healthcare-chatbot/issues)
+- **Documentation**: [Project Wiki](https://github.com/nkaluva9/healthcare-chatbot/wiki) *(to be populated)*
+- **Discussions**: [GitHub Discussions](https://github.com/nkaluva9/healthcare-chatbot/discussions) for questions and community support
+
+### External Documentation
+
+**Azure Bot Framework:**
+- [Azure Bot Service Documentation](https://docs.microsoft.com/en-us/azure/bot-service/)
+- [Direct Line API Reference](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts)
+- [Adaptive Cards Documentation](https://adaptivecards.io/)
+
+**Supabase:**
+- [Supabase Documentation](https://supabase.com/docs)
+- [Supabase JavaScript Client](https://supabase.com/docs/reference/javascript/introduction)
+- [Row Level Security Guide](https://supabase.com/docs/guides/auth/row-level-security)
+
+**React & TypeScript:**
+- [React Documentation](https://react.dev/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Vite Documentation](https://vitejs.dev/)
+
+### Getting Help
+
+1. **Check Documentation First**: Review this README and linked resources
+2. **Search Issues**: Someone may have already solved your problem
+3. **Ask in Discussions**: For general questions and usage help
+4. **Open an Issue**: For bugs or feature requests (see [Issue Reporting Guidelines](#issue-reporting-guidelines))
 
 ## Acknowledgments
 
