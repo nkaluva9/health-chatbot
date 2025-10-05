@@ -5,6 +5,7 @@ A modern, production-ready healthcare chatbot application built with React, Type
 ## Features
 
 - **Real-time Chat Interface**: Seamless integration with Azure Bot Framework Direct Line API
+- **Mock Direct Line Service**: Built-in testing support with MockDirectLineService for adaptive card UI responses without requiring Azure Bot Framework connection
 - **Session History**: Track and manage multiple chat sessions
 - **Privacy Controls**: Built-in consent management and data retention settings
 - **Adaptive Cards**: Rich, interactive card rendering for enhanced user experience
@@ -25,7 +26,7 @@ A modern, production-ready healthcare chatbot application built with React, Type
 
 - Node.js 18+ and npm
 - A Supabase account and project
-- Azure Bot Service with Direct Line channel configured
+- Azure Bot Service with Direct Line channel configured (optional - can use MockDirectLineService for testing)
 
 ## Getting Started
 
@@ -105,6 +106,16 @@ npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+#### Testing Mode
+
+The application includes a MockDirectLineService for testing adaptive card UI responses without connecting to Azure Bot Framework. This is useful for:
+
+- Local development and testing
+- Demonstrating adaptive card functionality
+- Frontend development without backend dependencies
+
+To use the mock service, the application will automatically detect if Direct Line credentials are not configured and provide sample adaptive card responses.
 
 ### 6. Build for Production
 
