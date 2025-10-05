@@ -2,6 +2,39 @@
 
 A modern, production-ready healthcare chatbot application built with React, TypeScript, Azure Bot Framework, and Supabase. This application provides a secure, HIPAA-compliant chat interface with session management, privacy controls, and adaptive card support.
 
+## Screenshots
+
+### Main Chat Interface with Session History
+![Chat Interface](public/screenshots/Screenshot%202025-10-05%20070112.png)
+
+The main interface features a clean, modern design with:
+- **Left Sidebar**: Session history panel showing all previous conversations with timestamps and message counts
+- **Active/Archived Tabs**: Organize conversations by their status
+- **New Conversation Button**: Quick access to start fresh chats
+- **Search Functionality**: Find specific conversations easily
+- **Privacy Settings**: Quick access to privacy controls at the bottom
+- **Adaptive Card Display**: Rich UI cards rendered in the chat area showing healthcare information
+
+### Privacy & Data Settings
+![Privacy Settings](public/screenshots/Screenshot%202025-10-05%20070156.png)
+
+Comprehensive privacy controls allowing users to:
+- **Data Retention Period**: Choose to keep conversations for 30, 60, or 90 days
+- **Maximum Sessions**: Control how many conversation sessions to store (up to 100)
+- **Auto-Archive**: Automatically archive old conversations when limits are reached
+- **Settings Summary**: Clear overview of current privacy configuration
+- **Encrypted Storage**: All data is encrypted and secure
+
+### Adaptive Cards in Action
+![Adaptive Cards](public/screenshots/Screenshot%202025-10-05%20070249.png)
+
+Interactive adaptive cards displaying:
+- **Welcome Cards**: Introduction to the chatbot with version information and status
+- **Task Cards**: Interactive task lists with checkboxes and due dates
+- **Action Buttons**: "Learn More" and "Submit Feedback" for user engagement
+- **Rich Formatting**: Cards with icons, structured data, and professional styling
+- **Healthcare Content**: Tailored responses for medical queries and recommendations
+
 ## Features
 
 - **Real-time Chat Interface**: Seamless integration with Azure Bot Framework Direct Line API
