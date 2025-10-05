@@ -13,4 +13,9 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     persistSession: true,
     autoRefreshToken: true,
   },
+  global: {
+    headers: {
+      'apikey': supabaseAnonKey,
+    },
+  },
 });
