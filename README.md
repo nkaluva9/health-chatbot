@@ -7,13 +7,14 @@ A modern, production-ready healthcare chatbot application built with React, Type
 ### Main Chat Interface with Session History
 ![Chat Interface](public/screenshots/Screenshot%202025-10-05%20070112.png)
 
-The main interface features a clean, modern design with:
-- **Left Sidebar**: Session history panel showing all previous conversations with timestamps and message counts
-- **Active/Archived Tabs**: Organize conversations by their status
-- **New Conversation Button**: Quick access to start fresh chats
-- **Search Functionality**: Find specific conversations easily
-- **Privacy Settings**: Quick access to privacy controls at the bottom
-- **Adaptive Card Display**: Rich UI cards rendered in the chat area showing healthcare information
+The main interface showcases a sophisticated, user-friendly design with:
+- **Persistent Session History**: Left sidebar displays a comprehensive list of all past conversations, each with descriptive titles, message counts, and timestamps for easy reference
+- **Seamless Session Navigation**: Click any previous conversation to instantly resume where you left off, maintaining full context and conversation flow
+- **Smart Organization**: Toggle between Active and Archived tabs to keep your workspace organized and focused
+- **Quick Access Controls**: Start new conversations instantly with the prominent "New Conversation" button
+- **Intelligent Search**: Quickly locate specific conversations using the integrated search functionality
+- **Privacy at Your Fingertips**: Access comprehensive privacy settings directly from the sidebar footer
+- **Rich Content Display**: Adaptive cards render beautifully in the main chat area, presenting healthcare information with interactive elements and professional styling
 
 ### Privacy & Data Settings
 ![Privacy Settings](public/screenshots/Screenshot%202025-10-05%20070156.png)
