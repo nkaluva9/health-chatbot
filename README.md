@@ -255,6 +255,146 @@ Stores user privacy and data retention preferences.
 ### cleanup-expired-sessions
 Automatically removes chat sessions and messages older than the user's configured retention period. Can be triggered via cron job or manual invocation.
 
+## Switching Between Mock and Real Azure Bot Service
+
+This application supports two modes of operation:
+
+### Mock Mode (Default - No Azure Required)
+
+The application currently runs in **Mock Mode** by default, which simulates bot responses without requiring an Azure Bot Service connection. This is ideal for:
+
+- Local development and testing
+- Demonstrating adaptive card UI functionality
+- Frontend development without backend dependencies
+- Quick prototyping and demos
+
+**Current Configuration** (`src/App.tsx`):
+```typescript
+<ChatContainer
+  useMock={true}                    // Mock mode enabled
+  userId="demo_user_001"
+  enablePersistence={true}
+/>
+```
+
+The Mock Direct Line Service provides realistic simulated responses including:
+- Text responses echoing user input
+- Adaptive cards (triggered by keywords: "card", "image", "options", "list")
+- Interactive card elements (buttons, inputs, choices)
+- Typing indicators and connection status simulation
+
+### Production Mode (Azure Bot Service)
+
+To connect to a real Azure Bot Framework bot with Direct Line, follow these steps:
+
+#### Step 1: Get Your Azure Direct Line Secret
+
+1. Log in to [Azure Portal](https://portal.azure.com)
+2. Navigate to your **Bot Service** resource
+3. Go to **Channels** in the left menu
+4. Click on **Direct Line** channel
+5. Click **Show** next to one of the secret keys
+6. Copy the secret key
+
+#### Step 2: Configure Environment Variable
+
+Add your Direct Line secret to the `.env` file:
+
+```env
+# Supabase Configuration (already configured)
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key-here
+
+# Azure Bot Framework Direct Line Secret
+VITE_BOT_DIRECT_LINE_SECRET=your_actual_directline_secret_here
+```
+
+**Important Notes:**
+- The variable must be prefixed with `VITE_` to be accessible in the frontend
+- Never commit your `.env` file with real secrets to version control
+- The `.gitignore` file already excludes `.env` from git
+
+#### Step 3: Update Application Configuration
+
+Modify `src/App.tsx` to use the real Direct Line service:
+
+```typescript
+function App() {
+  return (
+    <ChatContainer
+      directLineToken={import.meta.env.VITE_BOT_DIRECT_LINE_SECRET}  // Use environment variable
+      useMock={false}                                                 // Disable mock mode
+      userId="demo_user_001"
+      enablePersistence={true}
+    />
+  );
+}
+
+export default App;
+```
+
+#### Step 4: Restart Development Server
+
+After making these changes, restart your development server:
+
+```bash
+# Stop the current server (Ctrl+C)
+# Then restart
+npm run dev
+```
+
+### How It Works
+
+The application uses the `createDirectLineService` factory function (`src/services/directLineService.ts`) that determines which service to use:
+
+```typescript
+export const createDirectLineService = (
+  config: DirectLineConfig,
+  useMock: boolean = false,
+  mockOptions?: MockDirectLineOptions
+): DirectLine | MockDirectLineService => {
+  if (useMock && mockOptions) {
+    return new MockDirectLineService(mockOptions);  // Returns mock service
+  }
+
+  return new DirectLine({                           // Returns real Azure Direct Line
+    token: config.token,
+    secret: config.secret,
+    webSocket: config.webSocket !== false
+  });
+};
+```
+
+### Comparison: Mock vs Production Mode
+
+| Feature | Mock Mode | Production Mode |
+|---------|-----------|----------------|
+| **Setup Required** | None | Azure Bot Service + Direct Line |
+| **Responses** | Simulated | Real bot responses |
+| **Adaptive Cards** | Demo cards | Bot-generated cards |
+| **API Calls** | None | Direct Line API |
+| **Best For** | Development, demos | Production use |
+| **Cost** | Free | Azure charges apply |
+
+### Troubleshooting
+
+**Problem**: "Cannot connect to bot" or connection errors
+
+**Solutions**:
+1. Verify your Direct Line secret is correct in `.env`
+2. Ensure the secret is active in Azure Portal
+3. Check that your bot is running and healthy in Azure
+4. Verify the environment variable name matches: `VITE_BOT_DIRECT_LINE_SECRET`
+5. Confirm you restarted the dev server after changing `.env`
+
+**Problem**: Application still shows mock responses
+
+**Solutions**:
+1. Verify `useMock={false}` in `App.tsx`
+2. Check that `directLineToken` prop is being passed
+3. Clear browser cache and reload
+4. Check browser console for any errors
+
 ## Deployment
 
 The application can be deployed to various platforms:
